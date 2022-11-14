@@ -1,0 +1,5 @@
+import os
+SECRET_KEY = "MTA0MTc3NTEzMzA3NDkxOTU3NQ.GRi3iA.oqbXPm4e3ct1GutvsJp5qijPhV-EM0muc1rKNM"
+# SECRET_KEY = os.getenv('SECRET_KEY')
+
+testingServerID = 1001210310008504370
