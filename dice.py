@@ -25,7 +25,7 @@ class Shadowrun5_Dice():
         results = []
         for _ in range(dice_pool):
             results.append(random.randint(1,6))
-        if edge = True:
+        if edge == True:
             results.append(self.check_explode(results,6))
             
         return results
