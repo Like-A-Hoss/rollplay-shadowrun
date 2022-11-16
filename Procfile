@@ -1,1 +1,1 @@
-worker: python rollplay-exalted.py
+worker: python rollplay-shadowrun.py

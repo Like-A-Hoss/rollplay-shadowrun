@@ -1,4 +1,3 @@
-from msilib.schema import Class
 import random
 
 class Shadowrun5_Dice():
@@ -21,11 +20,9 @@ class Shadowrun5_Dice():
 
     def basic_roll(self):
         #Rolls the number of dice set and records them to display back
-        #Sets stunt number
         dice_pool = self.get_pool()
         edge = self.get_edge()
         results = []
-
         for _ in range(dice_pool):
             results.append(random.randint(1,6))
         if edge = True:
