@@ -31,7 +31,7 @@ async def on_ready():
 
 @client.slash_command(name="info", description="Get instruction from the Roll Play on how to use for Shadowrun.")
 async def infoc(interaction:Interaction):
-    await interaction.response.send_message("Hello Chummer!  I am Roll Play for Shadowrun!\n I will be able to roll dice trackinitative.\n   For now just basic rolls and rolls with pre-edge are working.\n  I should have Iniatives up soon.\n  Rolls can be done with /roll  Build 01")
+    await interaction.response.send_message("Hello Chummer!  I am Roll Play for Shadowrun!\n I roll dice, and track initative.\n   For now just basic rolls and rolls with pre-edge are working.\n  I should have Iniatives up soon.\n  Rolls can be done with /roll  Build 01")
 
 @client.slash_command(name="roll", description="Basic roll. with our without edge.")
 async def basic_roll(interaction:Interaction, dicepool:int, difficulty:int = 1, edge:bool =False):
@@ -58,26 +58,18 @@ async def basic_roll(interaction:Interaction, dicepool:int, difficulty:int = 1, 
     await interaction.response.send_message(embed= message)
 
 @client.slash_command(name="SR5 Initative", description="The Battle Starts")
-async def jb_roll(interaction:Interaction, dice_pool:int, willpower:bool =False, excelency:int =0, stunt:bool =True, double:int =10, dawn:bool=False):
+async def jb_roll(interaction:Interaction, dice_pool:int, bonus:int, charcter_name:str, combat_id:int):
     print("new Initative")
-    roller = dice.Exalted_Dice(dice_pool, willpower, excelency, stunt)    
+    roller = dice.Shadowrun5_Dice()    
     results = roller.basic_roll()
-    sux = roller.count_successes(results, double)
+    init = sum(results) + bonus
     message_maker = Message_Maker()
-    if not dawn:
-        initative =sux + 3
-    else:
-        initative = sux + 5
+    
     #let's get those bonuses, to display in our output embed
-    bonuses = "You recieved the following bonuses:\n"
-    if willpower:
-        bonuses += "\nwith 1 bonus success from Willpower"
-    if stunt == True:
-        bonuses += "\n2 extra dice from a stunt"
-    if excelency >0:
-        bonuses += f"\n and {excelency} extra dice from an excellency"
+    bonuses = f"You {charcter_name} recieved the following:\n"
+    
 
-    message = message_maker.initative(interaction, results, bonuses, initative)
+    message = message_maker.initative(interaction, results, bonuses, init)
     await interaction.response.send_message(embed=message)
 
 
