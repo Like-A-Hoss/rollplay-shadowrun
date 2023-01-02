@@ -52,7 +52,7 @@ class Shadowrun5_Dice():
         added_dice = 0
         added_results =[]
         for die in results:
-            if die == value:
+            if die >= value:
                 added_dice += 1
         for _ in range(added_dice):
             added_die = random.randint(1,10)
